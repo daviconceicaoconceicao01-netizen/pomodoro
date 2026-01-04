@@ -11,23 +11,26 @@
 <body>
 
 
-    <h1>🍅 Pomodoro</h1>
-    <h2 id="tempo">25:00</h2>
-    <p id="status"> hora de focar</p>
+    
+    <h2 id="tempo">00:00</h2>
+    <p id="status"> Defina o Tempo</p>
 
-    <audio id="alarme" src="alarme.mp3" preload="auto"></audio>
+    <audio id="alarme" preload="auto"></audio> 
 
 
-    <button class="tempo-btn" data-tempo="60">1 min</button>
-    <button class="tempo-btn" data-tempo="900">15 min</button>
-    <button class="tempo-btn" data-tempo="1500">25 min</button>
-    <button class="tempo-btn" data-tempo="3000">50 min</button>
+
+    <input type="number" id="tempoPersonalizado" placeholder="Minutos">
+    <button id="definirTempo">Minutos</button>
 
     <button id="start">iniciar</button>
     <button id="pause">Pausar</button>
     <button id="reset">Resetar</button>
+    <button id="pararAlarme">Parar Alarme</button>
 
+    <button id="mais5">+5 min</button>
 
+  
+    <input type="file" id="musica" accept="audio/*">
 
     <script src="script.js"></script>
 </body>

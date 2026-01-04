@@ -1,11 +1,105 @@
-body {
-  font-family: Arial;
-  text-align: center;
-  margin-top: 60px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "segoe UI",tahoma,sans-serif;
+
+}
+body{
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+body > * {
+  max-width: 300px;
+  width: 100%;
+
+}
+
+body {
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+  letter-spacing: 1px;
+
+}
+
+#tempo {
+  font-size: 4rem;
+  font-weight: bold;
+  margin: 10px 0;
+  color: #ff6b6b; 
+}
+
+#status {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    margin-bottom: 10px;
+}
+
+
+input[type="number"],
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+
 button {
-  padding: 10px 15px;
-  margin: 5px;
-  cursor: pointer;
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background: #ff6b6b;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+
+button:hover {
+    background: #ff8787;
+    transform: translateY(-2px);
+}
+
+
+#pause,
+#reset,
+#pararAlarme,
+#mais5 {
+    background: #1e293b;
+}
+
+#pause:hover,
+#reset:hover,
+#pararAlarme:hover,
+#mais5:hover {
+    background: #334155;
+}
+
+
+#mais5 {
+    margin-top: 6px;
+}
+
+
+@media (max-width: 420px) {
+    #tempo {
+        font-size: 3.2rem;
+    }
 }

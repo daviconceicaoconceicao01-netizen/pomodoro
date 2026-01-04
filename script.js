@@ -1,12 +1,20 @@
+let tempo = 0; // 25 minutos
+let intervalo = null;
+let audioLiberado = false;
 
-let tempo = 1500; // 25 minutos
-let intervalo = null
-
+const btnMais5 = document.getElementById("mais5");
+const btnPararAlarme = document.getElementById("pararAlarme");
 const tempoEl = document.getElementById("tempo");
 const statusEl = document.getElementById("status");
-const botoesTempo = document.querySelectorAll(".tempo-btn");
 const alarme = document.getElementById("alarme");
-let audioLiberado = false;
+const inputTempo = document.getElementById("tempoPersonalizado");
+const btnDefinir = document.getElementById("definirTempo");
+const inputMusica = document.getElementById("musica");
+
+const btnStart = document.getElementById("start");
+const btnPause = document.getElementById("pause");
+const btnReset = document.getElementById("reset");
+
 
 function atualizarTempo() {
     let min = Math.floor(tempo / 60);
@@ -17,7 +25,18 @@ function atualizarTempo() {
 
 }
 
-document.getElementById("start").onclick = () => {
+btnStart.onclick = () => {
+
+if (tempo <= 0) {
+    alert("Defina um tempo!!!!");
+    return;
+} 
+
+if (!alarme.src) {
+    alert("Escolha a Musica");
+    return;
+}
+
     if (intervalo) return;
 
     statusEl.textContent = "hora de focar!!"
@@ -31,48 +50,70 @@ document.getElementById("start").onclick = () => {
             audioLiberado = true;
         }).catch(() => { });
     }
-
     intervalo = setInterval(() => {
+        tempo--;
+        atualizarTempo();
 
-        if (tempo > 0) {
-            tempo--;
-            atualizarTempo();
-        } else {
+
+        if (tempo <= 0) {
             clearInterval(intervalo);
             intervalo = null;
-
             statusEl.textContent = " tempo finalizado ⏰";
-            alarme.currentTime = 0;
-            alarme.play();
-
+            atualizarTempo();
         }
+        alarme.play();
     }, 1000);
 
 };
 
-document.getElementById("reset").onclick = () => {
+btnReset.onclick = () => {
     clearInterval(intervalo);
     intervalo = null;
-    tempo = 1500;
+    tempo = 0;
     atualizarTempo();
-    statusEl.textContent = "hora de focar";
+    statusEl.textContent = "Defina o tempo";
 };
-document.getElementById("pause").onclick = () => {
+
+btnPause.onclick = () => {
     if (!intervalo) return;
     clearInterval(intervalo);
     intervalo = null;
     statusEl.textContent = "pausado";
 }
 
-botoesTempo.forEach(botao => {
-    botao.onclick = () => {
-        clearInterval(intervalo);
-        intervalo = null;
+btnReset.onclick = () => {
+    clearInterval(intervalo);
+    intervalo = null;
+    atualizarTempo();
+    statusEl.textContent = "Defina o tempo";
+};
 
-        tempo = Number(botao.dataset.tempo);
+btnMais5.addEventListener("click", () => {
+    if (tempo <= 0) return
+    tempo += 300;
+    atualizarTempo();
+});
+
+btnDefinir.addEventListener("click", () => {
+    const minutos = Number(inputTempo.value);
+
+    if (minutos > 0) {
+        tempo = minutos * 60;
         atualizarTempo();
-        statusEl.textContent = "Hora de focar";
-    };
+        statusEl.textContent = "Pronto para Iniciar";
+    }
+});
+
+inputMusica.addEventListener("change", () => {
+    const arquivo = inputMusica.file[0];
+    if (arquivo) {
+        alarme.src = URL.createObjectURL(arquivo);
+    }
+});
+
+btnPararAlarme.addEventListener("click", () => {
+    alarme.pause();
+    alarme.currentTime = 0;
 });
 
 atualizarTempo();
