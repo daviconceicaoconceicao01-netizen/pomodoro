@@ -27,15 +27,10 @@ function atualizarTempo() {
 
 btnStart.onclick = () => {
 
-if (tempo <= 0) {
-    alert("Defina um tempo!!!!");
-    return;
-} 
-
-if (!alarme.src) {
-    alert("Escolha a Musica");
-    return;
-}
+    if (tempo <= 0) {
+        alert("Defina um tempo!!!!");
+        return;
+    }
 
     if (intervalo) return;
 
