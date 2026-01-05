@@ -36,14 +36,14 @@ btnStart.onclick = () => {
 
     statusEl.textContent = "hora de focar!!"
 
-    if (!audioLiberado) {
+    if (!audioLiberado && alarme.src) {
         alarme.muted = true;
         alarme.play().then(() => {
             alarme.pause();
             alarme.currentTime = 0;
-            alarme.muted = false
+            alarme.muted = false;
             audioLiberado = true;
-        }).catch(() => { });
+        }).catch(() => {});
     }
     intervalo = setInterval(() => {
         tempo--;
@@ -54,7 +54,10 @@ btnStart.onclick = () => {
             clearInterval(intervalo);
             intervalo = null;
             statusEl.textContent = " tempo finalizado ⏰";
-            atualizarTempo();
+          
+            if (alarme.src){
+                alarme.play();
+            }
         }
         alarme.play();
     }, 1000);
@@ -100,7 +103,7 @@ btnDefinir.addEventListener("click", () => {
 });
 
 inputMusica.addEventListener("change", () => {
-    const arquivo = inputMusica.file[0];
+    const arquivo = inputMusica.files[0];
     if (arquivo) {
         alarme.src = URL.createObjectURL(arquivo);
     }
