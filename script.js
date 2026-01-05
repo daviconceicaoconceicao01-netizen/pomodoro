@@ -34,6 +34,9 @@ btnStart.onclick = () => {
 
     if (intervalo) return;
 
+    alarme.pause();
+    alarme.currentTime = 0
+
     statusEl.textContent = "hora de focar!!"
 
     if (!audioLiberado && alarme.src) {
@@ -53,13 +56,15 @@ btnStart.onclick = () => {
         if (tempo <= 0) {
             clearInterval(intervalo);
             intervalo = null;
+
+
             statusEl.textContent = " tempo finalizado ⏰";
           
             if (alarme.src){
+                alarme.currentTime = 0
                 alarme.play();
             }
         }
-        alarme.play();
     }, 1000);
 
 };
