@@ -1,12 +1,13 @@
-let tempo = 0; // 25 minutos
+let tempo = 0; // 
 let intervalo = null;
 let audioLiberado = false;
+let horaAlarmeAtivo = null;
 
 const btnMais5 = document.getElementById("mais5");
 const btnPararAlarme = document.getElementById("pararAlarme");
-const tempoEl = document.getElementById("tempo");
+const tempoEl = document.getElementById("tempoPomodoro");
 const statusEl = document.getElementById("status");
-const alarme = document.getElementById("alarme");
+const alarme = document.getElementById("somAlarme");
 const inputTempo = document.getElementById("tempoPersonalizado");
 const btnDefinir = document.getElementById("definirTempo");
 const inputMusica = document.getElementById("musica");
@@ -15,6 +16,7 @@ const btnStart = document.getElementById("start");
 const btnPause = document.getElementById("pause");
 const btnReset = document.getElementById("reset");
 
+document.getElementById("nomeUser").innerText = localStorage.getItem("usuario");
 
 function atualizarTempo() {
     let min = Math.floor(tempo / 60);
@@ -46,7 +48,7 @@ btnStart.onclick = () => {
             alarme.currentTime = 0;
             alarme.muted = false;
             audioLiberado = true;
-        }).catch(() => {});
+        }).catch(() => { });
     }
     intervalo = setInterval(() => {
         tempo--;
@@ -59,8 +61,8 @@ btnStart.onclick = () => {
 
 
             statusEl.textContent = " tempo finalizado ⏰";
-          
-            if (alarme.src){
+
+            if (alarme.src) {
                 alarme.currentTime = 0
                 alarme.play();
             }
@@ -69,13 +71,6 @@ btnStart.onclick = () => {
 
 };
 
-btnReset.onclick = () => {
-    clearInterval(intervalo);
-    intervalo = null;
-    tempo = 0;
-    atualizarTempo();
-    statusEl.textContent = "Defina o tempo";
-};
 
 btnPause.onclick = () => {
     if (!intervalo) return;
@@ -119,4 +114,52 @@ btnPararAlarme.addEventListener("click", () => {
     alarme.currentTime = 0;
 });
 
+function logout() {
+    localStorage.removeItem("logado");
+    window.location.href = "login.html";
+}
+
+function abrirAba(id, botao) {
+    // esconde todas as abas
+    document.querySelectorAll(".aba").forEach(aba => {
+        aba.classList.remove("ativa");
+    });
+
+    // remove active de todos os botões
+    document.querySelectorAll(".tab-btn").forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    // mostra a aba clicada
+    document.getElementById(id).classList.add("ativa");
+    botao.classList.add("active");
+}
+
+
+setInterval(() => {
+    const agora = new Date();
+    const hora =
+        String(agora.getHours()).padStart(2, "0") + ":" +
+        String(agora.getMinutes()).padStart(2, "0") + ":" +
+        String(agora.getSeconds()).padStart(2, "0");
+
+    document.getElementById("horaAtual").innerText = hora;
+
+    if (horaAlarmeAtivo === hora && alarme.src) {
+        alarme.play();
+    }
+}, 1000);
+
+function ativarAlarme() {
+    const input = document.getElementById("horaAlarme").value;
+
+    if (!input) {
+        document.getElementById("statusAlarme").innerText = "Defina um horário";
+        return;
+    }
+
+    horaAlarmeAtivo = input;
+    document.getElementById("statusAlarme").innerText =
+        "Alarme definido para " + input;
+}
 atualizarTempo();

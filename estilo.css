@@ -2,10 +2,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "segoe UI",tahoma,sans-serif;
-
+  font-family: "segoe UI", tahoma, sans-serif;
 }
-body{
+body {
   min-height: 100vh;
   background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
   color: #fff;
@@ -17,7 +16,6 @@ body{
 body > * {
   max-width: 300px;
   width: 100%;
-
 }
 
 body {
@@ -29,77 +27,276 @@ body {
 h1 {
   font-size: 2rem;
   letter-spacing: 1px;
-
 }
 
 #tempo {
   font-size: 4rem;
   font-weight: bold;
   margin: 10px 0;
-  color: #ff6b6b; 
+  color: #ff6b6b;
 }
 
 #status {
-    font-size: 0.95rem;
-    opacity: 0.9;
-    margin-bottom: 10px;
+  font-size: 0.95rem;
+  opacity: 0.9;
+  margin-bottom: 10px;
 }
-
 
 input[type="number"],
 input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    outline: none;
-    margin-bottom: 8px;
-    font-size: 0.95rem;
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
 }
-
 
 button {
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    border: none;
-    background: #ff6b6b;
-    color: #fff;
-    font-size: 0.95rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #ff6b6b;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
-
 
 button:hover {
-    background: #ff8787;
-    transform: translateY(-2px);
+  background: #ff8787;
+  transform: translateY(-2px);
 }
-
 
 #pause,
 #reset,
 #pararAlarme,
 #mais5 {
-    background: #1e293b;
+  background: #1e293b;
 }
 
 #pause:hover,
 #reset:hover,
 #pararAlarme:hover,
 #mais5:hover {
-    background: #334155;
+  background: #334155;
 }
-
 
 #mais5 {
-    margin-top: 6px;
+  margin-top: 6px;
+}
+
+@media (max-width: 420px) {
+  #tempo {
+    font-size: 3.2rem;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #1e1e2f, #2b2b45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-box {
+  background: #fff;
+  padding: 30px 25px;
+  width: 320px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.login-box h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 12px; 
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+ border-radius: 6px;
+ font-size: 16px;
+}
+
+.login-box input.focus {
+  outline: none;
+  border-color: #5c7cfa;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 121px;
+  background: #5c7cfa;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-box button:hover {
+  background: #4a68d8;
+}
+
+#msg {
+  margin-top: 10px;
+  font-size: 14px;
+  color: red;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tab-btn {
+  padding: 10px 20px;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.tab-btn.active {
+  background: #5c7cfa;
+  color: #fff;
+}
+
+.aba {
+  display: none;
+  text-align: center;
+}
+
+.aba.ativa {
+  display: block;
 }
 
 
-@media (max-width: 420px) {
-    #tempo {
-        font-size: 3.2rem;
-    }
+body {
+    margin: 0;
+    height: 100vh;
+    background: #121212;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+}
+
+.login-box {
+    background: #1e1e1e;
+    padding: 30px;
+    width: 320px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.6);
+    text-align: center;
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+    font-weight: normal;
+    color: #f5f5f5;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    background: #2a2a2a;
+    border: 1px solid #333;
+    border-radius: 6px;
+    color: #fff;
+    outline: none;
+}
+
+.login-box input::placeholder {
+    color: #aaa;
+}
+
+.login-box input:focus {
+    border-color: #ff4d4d;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    background: #ff4d4d;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.login-box button:hover {
+    background: #e64545;
+}
+
+#msg {
+    margin-top: 12px;
+    font-size: 13px;
+    color: #ff6b6b;
+}
+
+/* RELÓGIO */
+#relogio {
+    text-align: center;
+}
+
+#horaAtual {
+    font-size: 48px;
+    letter-spacing: 2px;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+/* Alarme */
+#relogio input[type="time"] {
+    background: #2a2a2a;
+    color: #fff;
+    border: 1px solid #333;
+    padding: 10px;
+    border-radius: 6px;
+    margin: 10px 0;
+}
+
+#relogio button {
+    background: #ff4d4d;
+    border: none;
+    padding: 10px 14px;
+    margin: 5px;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#relogio button:hover {
+    background: #e64545;
+}
+
+#statusAlarme {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #bbb;
 }

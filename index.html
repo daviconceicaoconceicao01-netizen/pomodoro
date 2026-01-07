@@ -6,30 +6,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro</title>
     <link rel="stylesheet" href="estilo.css">
+    <script>
+
+        if (localStorage.getItem("logado") !== "true") {
+            window.location.href = "login.html";
+        }
+
+    </script>
 </head>
 
 <body>
 
+    <div class="tabs">
+        <button class="tab-btn active" onclick="abrirAba('pomodoro', this)">
+            🍅 Pomodoro
+        </button>
+        <button class="tab-btn" onclick="abrirAba('relogio', this)">
+            ⏰ Relógio
+        </button>
 
-    
-    <h2 id="tempo">00:00</h2>
-    <p id="status"> Defina o Tempo</p>
+    </div>
 
-    <audio id="alarme" preload="auto"></audio> 
+    <div id="pomodoro" class="aba ativa">
+        <h2>Pomodoro</h2>
+        <p id="tempoPomodoro">00:00</p>
+
+
+        <input type="number" id="tempoPersonalizado" placeholder="Minutos">
+        <button id="definirTempo">Minutos</button>
+
+        <button id="start">iniciar</button>
+        <button id="pause">Pausar</button>
+        <button id="reset">Resetar</button>
+        <button onclick="logout()">Sair</button>
+
+        <button id="mais5">+5 min</button>
+
+    </div>
+
+
+    <div id="relogio" class="aba">
+        <h2>Relogio / Alarme</h2>
 
 
 
-    <input type="number" id="tempoPersonalizado" placeholder="Minutos">
-    <button id="definirTempo">Minutos</button>
+        <p id="horaAtual">00:00:00</p>
 
-    <button id="start">iniciar</button>
-    <button id="pause">Pausar</button>
-    <button id="reset">Resetar</button>
-    <button id="pararAlarme">Parar Alarme</button>
 
-    <button id="mais5">+5 min</button>
+        <input type="time" id="horaAlarme">
+        <button onclick="ativarAlarme()"> Ativar alarme</button>
+        <button id="pararAlarme">Parar Alarme</button>
 
-  
+        
+        <p id="statusAlarme"></p>
+
+    </div>
+
+    <audio id="somAlarme" src="alarme.mp3"></audio>
+    <p>Bem-vindo, <strong id="nomeUser">👋</strong></p>
+
+
+
     <input type="file" id="musica" accept="audio/*">
 
     <script src="script.js"></script>
